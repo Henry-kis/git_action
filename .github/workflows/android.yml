@@ -8,13 +8,13 @@ jobs:
 
 
   send_slack:
-    runs-on: [ self-hosted, android ]
+    runs-on: ubuntu-latest
     steps:
-    - uses: 8398a7/action-slack@v3
-      with:
-        status: ${{ job.status }}
-        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest  # selectable (default: repo,message)
-        text: ${{ github.event.head_commit.message }}
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest  # selectable (default: repo,message)
+          text: ${{ github.event.head_commit.message }}
 
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
