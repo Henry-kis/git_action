@@ -59,7 +59,7 @@ jobs:
           fi
           DAILY_MESSAGE="알고리즘 문제 풀기 좋은 밤이네요!\n현재일($NOW_DATE)기준으로, *${NOW_YEAR}년 ${NOW_MONTH}월에 ${COUNT}문제* 푸셨어요\n한 달 목표는 *30문제* 입니다. ${SITUATION}"
           # 슬랙 채널로 메시지 요청
-          curl -X POST --data-urlencode "payload={\"channel\":\"#알고_알리미\", \"username\":\"알고 알리미\", \"text\":\"${DAILY_MESSAGE}\", \"icon_emoji\": \":male-technologist:\"}" {% raw %}${{ secrets.SLACK_WEBHOOK_URL }}{% endraw %}
+          curl -X POST --data-urlencode "payload={\"channel\":\"D04KCUGBDBK\", \"username\":\"알고 알리미\", \"text\":\"${DAILY_MESSAGE}\", \"icon_emoji\": \":male-technologist:\"}" {% raw %}${{ secrets.SLACK_WEBHOOK_URL }}{% endraw %}
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
