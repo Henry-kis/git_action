@@ -37,7 +37,6 @@ jobs:
           fields: all
           custom_payload: |
             {
-              "text": "Foo bar baz",
               "blocks": [
                 {
                   "type": "section",
@@ -122,7 +121,34 @@ jobs:
                     }
                   ]
                 }
-              ]
+              ],
+              attachments: [{
+                author_name: `${process.env.AS_AUTHOR}`,
+                fallback: 'fallback',
+                title: 'Deploy Result12',
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                fields: [{
+                  "type": "mrkdwn",
+                  title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
+                  value: '*About this build*\nCommit have some nice formatting?\n\n',
+                  short: true
+                },
+                {
+                  title: 'Change Log',
+                  value: 'Post Content :rocket:',
+                  short: true
+                },
+                {
+                  title: 'long title1',
+                  value: `${process.env.AS_MESSAGE$}\n${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}\n\n'Post Content :rocket:'`,
+                  short: false
+                }],
+                actions: [{
+                  title: 'actions title1',
+                  value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+                  short: false
+                }]
+              }]
             }
       - name: Slack Notify
         uses: rtCamp/action-slack-notify@v2.2.1
