@@ -18,38 +18,50 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
         with:
-            status: custom
-            fields: all
-            custom_payload: |
-              {
-                attachments: [{
-                  author_name: `${process.env.AS_AUTHOR}`,
-                  fallback: 'fallback',
-                  title: 'Deploy Result',
-                  color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                  fields: [{
-                    title: 'lower case',
-                    value: 'LOWER CASE CHECK'.toLowerCase(),
-                    short: true
-                  },
-                  {
-                    title: 'reverse',
-                    value: 'gnirts esrever'.split('').reverse().join(''),
-                    short: true
-                  },
-                  {
-                    title: 'long title1',
-                    value: `${process.env.AS_MESSAGE$}\n${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-                    short: false
-                  }],
-                  actions: [{
-                    title: 'actions title1',
-                    value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-                    short: false
-                  }]
+          status: custom
+          fields: all
+          custom_payload: |
+            {
+              attachments: [{
+                author_name: `${process.env.AS_AUTHOR}`,
+                fallback: 'fallback',
+                title: 'Deploy Result',
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                fields: [{
+                  title: 'lower case',
+                  value: 'LOWER CASE CHECK'.toLowerCase(),
+                  short: true
+                },
+                {
+                  title: 'reverse',
+                  value: 'gnirts esrever'.split('').reverse().join(''),
+                  short: true
+                },
+                {
+                  title: 'long title1',
+                  value: `${process.env.AS_MESSAGE$}\n${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+                  short: false
                 }],
-                text: "Custom Field Check"
-              }    
+                actions: [{
+                  title: 'actions title1',
+                  value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+                  short: false
+                }]
+              }],
+              text: "Custom Field Check"
+            }
+      - name: Slack Notify
+        uses: rtCamp/action-slack-notify@v2.2.1
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_TITLE: Post Title
+          SLACK_USERNAME: rtCamp
+
+
 
 #  post_slack:
 #    runs-on: ubuntu-latest
