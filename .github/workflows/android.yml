@@ -9,28 +9,20 @@ jobs:
 
 
   send_slack:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ macos-latest, windows-latest, ubuntu-18.04 ]
-        node: [ 8, 10, 12, 14 ]
-        include:
-          - os: windows-latest
-            node: 8
-            npm: 6
+    runs-on: ubuntu-latest
     steps:
       - name: Notify slack message
         uses: 8398a7/action-slack@v3
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          MATRIX_CONTEXT: ${{ toJson(matrix) }}
 
         with:
             status: custom
             custom_payload: |
               {
                 text: "Custom Field Check",
+                icon_emoji: ':octocat:'
                 attachments: [{
                   "author_name": "8398a7@action-slack", // json
                   fallback: 'fallback',
