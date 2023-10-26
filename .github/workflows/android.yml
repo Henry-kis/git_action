@@ -26,8 +26,6 @@ jobs:
               lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
             }
             return lines
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
