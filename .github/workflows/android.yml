@@ -14,11 +14,6 @@ jobs:
       - name: Logging
         run: |
           echo "${{toJSON(github.event)}}"
-          $lines = "## What’s Changed<br><br>"
-          $commits = ${{ github.event.commits }}
-          foreach ($commit in $commits) {
-              $lines += $commit.message + " (" + $commit.id + ") @" + $commit.author.username + "<br>"
-          }
       - name: Create Changelog
         id: changelog
         uses: actions/github-script@v6.3.1
