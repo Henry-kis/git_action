@@ -47,7 +47,7 @@ jobs:
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 fields: [{
                   title: '## What’s Changed',
-                  value: '*About this build*\n\n${{ steps.change-log.outputs.result }}',
+                  value: '*About this build*\n\n',
                   short: true
                 },
                 {
