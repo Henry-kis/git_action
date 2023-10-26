@@ -35,4 +35,3 @@ jobs:
           channel: D04KCUGBDBK
           status: SUCCESS
           color: good
-          text: ${{ github.event.head_commit.message }}
