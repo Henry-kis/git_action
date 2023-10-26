@@ -51,7 +51,7 @@ jobs:
                 },
                 {
                   title: 'Change Log',
-                  value: ${{steps.change-log.outputs.result}},
+                  value: 'Post Content :rocket:',
                   short: true
                 },
                 {
