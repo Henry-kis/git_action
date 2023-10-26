@@ -11,6 +11,9 @@ jobs:
   send_slack:
     runs-on: ubuntu-latest
     steps:
+      - name: Logging
+        run: |
+          echo "${{toJSON(github.event)}}"
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
