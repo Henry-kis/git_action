@@ -14,6 +14,11 @@ jobs:
       - name: Logging
         run: |
           echo "${{toJSON(github.event)}}"
+          $lines = "## What’s Changed<br><br>"
+          $commits = ${{ github.event.commits }}
+          foreach ($commit in $commits) {
+              $lines += $commit.message + " (" + $commit.id + ") @" + $commit.author.username + "<br>"
+          }
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
@@ -31,9 +36,9 @@ jobs:
                 title: 'Deploy Result1234',
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 fields: [{
-                  "type": "mrkdwn",
-                  title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
-                  value: '*About this build*\nCommit have some nice formatting?\n\n${{ toJSON(github.event.commits[0].message) }}',
+                  type : 'mrkdwn'
+                  title: '## What’s Changed',
+                  value: '*About this build*\nCommit have some nice formatting?\n\n$$lines',
                   short: true
                 },
                 {
