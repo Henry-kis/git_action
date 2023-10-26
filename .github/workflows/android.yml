@@ -18,48 +18,25 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
         with:
-            status: custom
-            fields: workflow,job,commit,repo,ref,author,took
-            custom_payload: |
-              {
-                attachments: [{
-                  "author_name": "8398a7@action-slack", // json
-                  fallback: 'fallback',
-                  title: 'CI Result',
-                  color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                  fields: [{
-                    title: 'lower case',
-                    value: 'LOWER CASE CHECK'.toLowerCase(),
-                    short: true
-                  },
-                  {
-                    title: 'reverse',
-                    value: 'gnirts esrever'.split('').reverse().join(''),
-                    short: true
-                  },
-                  {
-                    title: 'long title1',
-                    value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-                    short: false
-                  }],
-                  actions: [{
-                    title: 'actions title1',
-                    value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
-                    short: false
-                  }]
-                }],
-                text: "Custom Field Check"
-              }    
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+              }]
+            }   
 
-  post_slack:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify slack success
-        id: slack # IMPORTANT: reference this step ID value in future Slack steps
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel: D04KCUGBDBK
-          status: SUCCESS
-          color: good
+#  post_slack:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Notify slack success
+#        id: slack # IMPORTANT: reference this step ID value in future Slack steps
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
+#        with:
+#          channel: D04KCUGBDBK
+#          status: SUCCESS
+#          color: good
