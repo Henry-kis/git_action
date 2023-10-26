@@ -1,4 +1,4 @@
-name: Android Message
+name: Android Message 2
 
 on:
   workflow_dispatch:
@@ -8,24 +8,9 @@ on:
 jobs:
 
 
-  send_slack:
+  send_slack_message:
     runs-on: ubuntu-latest
     steps:
-      - name: Logging
-        run: |
-          echo "${{toJSON(github.event)}}"
-      - name: Create Changelog
-        id: change-log
-        uses: actions/github-script@v6.4.1
-        with:
-          result-encoding: string
-          script: |
-            const commits = github.event.commits;
-            var lines = "";
-            for (const commit of commits) {
-              lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
-            }
-            return lines
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
@@ -63,13 +48,3 @@ jobs:
                 }]
               }]
             }
-      - name: Slack Notify
-        uses: rtCamp/action-slack-notify@v2.2.1
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-          SLACK_CHANNEL: general
-          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Post Content :rocket: ${{steps.change-log.outputs.result}}'
-          SLACK_TITLE: Post Title
-          SLACK_USERNAME: rtCamp
