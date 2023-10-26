@@ -33,7 +33,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: 'name'
-          SLACK_MSG_AUTHOR: 'ㅇㅁㄴㅇ213'
+          SLACK_MSG_AUTHOR: '메세지 테스트'
           SLACK_LINK_NAMES: 'henry'
           SLACK_COLOR: ${{ job.status }}
           SLACK_TITLE: '변경 내용 :fast_parrot:'
