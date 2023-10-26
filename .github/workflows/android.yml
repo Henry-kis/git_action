@@ -46,7 +46,7 @@ jobs:
                 fields: [{
                   "type": "mrkdwn",
                   title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
-                  value: '*About this build*\nCommit have some nice formatting?\n\n',
+                  value: '*About this build*\nCommit have some nice formatting?\n\n${{steps.change-log.outputs.result}}',
                   short: true
                 },
                 {
