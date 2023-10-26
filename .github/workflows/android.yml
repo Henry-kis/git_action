@@ -33,7 +33,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: echo "${{steps.change-log.outputs.result}}"
         with:
           status: custom
           fields: all
