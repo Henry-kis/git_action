@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${{toJSON(github.event)}}"
       - name: Create Changelog
-        id: changelog
+        id: change-log
         uses: actions/github-script@v6.3.1
         env:
           COMMITS: ${{ toJSON(github.event.commits) }}
@@ -28,12 +28,13 @@ jobs:
               lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
             }
             return lines
+      - name: Get result
+        run: echo "${{steps.change-log.outputs.result}}"
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
         with:
           status: custom
           fields: all
@@ -47,7 +48,7 @@ jobs:
                 fields: [{
                   type : 'mrkdwn'
                   title: '## What’s Changed',
-                  value: '*About this build*\n\n${{ steps.changelog.outputs.result }}',
+                  value: '*About this build*\n\n${{ steps.change-log.outputs.result }}',
                   short: true
                 },
                 {
