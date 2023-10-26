@@ -23,7 +23,9 @@ jobs:
             const commits = JSON.parse(process.env.COMMITS);
             var lines = "";
             for (const commit of commits) {
-              lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
+              if (commit.message.includes('VMTS-')) {
+                lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
+              }
             }
             return lines
       - name: Slack Notify
