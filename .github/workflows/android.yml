@@ -32,7 +32,6 @@ jobs:
         uses: 8398a7/action-slack@v3.15.1
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          COMMITS: ${{steps.change-log.outputs.result}}
         with:
           status: custom
           fields: all
