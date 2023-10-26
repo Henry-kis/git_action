@@ -31,7 +31,6 @@ jobs:
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
-          GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
           status: custom
