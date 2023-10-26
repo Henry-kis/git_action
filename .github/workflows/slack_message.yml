@@ -24,7 +24,7 @@ jobs:
             var lines = "";
             for (const commit of commits) {
               if (commit.message.includes('VMTS-')) {
-                lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
+                lines += "- " + commit.message + " (" + commit.author.username + ")\n"
               }
             }
             return lines
