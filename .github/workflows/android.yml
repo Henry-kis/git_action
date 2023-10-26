@@ -18,14 +18,14 @@ jobs:
           text: ${{ github.event.head_commit.message }}
 
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
+          SLACK_BOT_TOKEN : ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
   post_slack:
     runs-on: ubuntu-latest
     steps:
       - name: Notify slack success
         id: slack # IMPORTANT: reference this step ID value in future Slack steps
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
         uses: voxmedia/github-action-slack-notify-build@v1.1.2
         with:
           status: SUCCESS
