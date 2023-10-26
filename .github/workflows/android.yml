@@ -64,7 +64,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: 'D04KCUGBDBK'
+          channel-id: 'github_connection_test'
           slack-message: 'This message was sent through a proxy'
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
