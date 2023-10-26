@@ -21,7 +21,7 @@ jobs:
           result-encoding: string
           script: |
             const commits = process.env.COMMITS;
-            console.log($commits);
+            console.log(commits);
             const commitsString = JSON.parse();
             var lines = "";
             for (const commit of commitsString) {
