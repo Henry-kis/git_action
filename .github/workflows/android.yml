@@ -57,7 +57,7 @@ jobs:
       - name: Notify slack success
         id: slack # IMPORTANT: reference this step ID value in future Slack steps
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         uses: voxmedia/github-action-slack-notify-build@v1.1.2
         with:
           channel: D04KCUGBDBK
