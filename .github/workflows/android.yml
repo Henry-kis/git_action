@@ -32,6 +32,7 @@ jobs:
         uses: 8398a7/action-slack@v3.15.1
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          COMMITS: ${{steps.change-log.outputs.result}}
         with:
           status: custom
           fields: all
@@ -45,7 +46,7 @@ jobs:
                 fields: [{
                   "type": "mrkdwn",
                   title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
-                  value: '*About this build*\nCommit have some nice formatting?\n\n${{steps.change-log.outputs.result}}',
+                  value: '*About this build*\nCommit have some nice formatting?\n\n${{ process.env.COMMITS}}',
                   short: true
                 },
                 {
