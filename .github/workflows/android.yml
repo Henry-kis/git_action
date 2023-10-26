@@ -19,11 +19,11 @@ jobs:
 
         with:
             status: custom
-            fields: workflow,job,commit,repo,ref,author,took
+            fields: all
             custom_payload: |
               {
                 attachments: [{
-                  "author_name": `${process.env.AS_AUTHOR}`,
+                  author_name: `${process.env.AS_AUTHOR process}`,
                   fallback: 'fallback',
                   title: 'Deploy Result',
                   color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
@@ -39,7 +39,7 @@ jobs:
                   },
                   {
                     title: 'long title1',
-                    value: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
+                    value: `${process.env.AS_MESSAGE$}\n{process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
                     short: false
                   }],
                   actions: [{
