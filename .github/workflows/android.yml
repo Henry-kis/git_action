@@ -50,8 +50,8 @@ jobs:
                   short: true
                 },
                 {
-                  title: 'reverse',
-                  value: 'gnirts esrever'.split('').reverse().join(''),
+                  title: 'Change Log',
+                  value: ${{steps.change-log.outputs.result}},
                   short: true
                 },
                 {
