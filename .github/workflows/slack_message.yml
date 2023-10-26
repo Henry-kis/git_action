@@ -20,9 +20,10 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const commits = JSON.parse(process.env.COMMITS);
+            const commits = process.env.COMMITS;
+            const commitsString = JSON.parse();
             var lines = "";
-            for (const commit of commits) {
+            for (const commit of commitsString) {
               if (commit.message.includes('VMTS-')) {
                 lines += "- " + commit.message + " (" + commit.author.username + ")\n"
               }
