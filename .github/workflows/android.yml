@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify slack message
-        uses: 8398a7/action-slack@v3
+        uses: 8398a7/action-slack@v3.15.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -30,7 +30,7 @@ jobs:
                 fields: [{
                   "type": "mrkdwn",
                   title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
-                  value: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?\n\n${{ toJSON(github.event.head_commit.message) }}",
+                  value: 'About this build\nCommit header This is a multiple line commit message that might have some nice formatting?\n\n${{ toJSON(github.event.head_commit.message) }}'"',
                   short: true
                 },
                 {
