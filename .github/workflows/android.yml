@@ -38,7 +38,7 @@ jobs:
                 fields: [{
                   type : 'mrkdwn'
                   title: '## What’s Changed',
-                  value: '*About this build*\nCommit have some nice formatting?\n\n$$lines',
+                  value: '*About this build*\n\n$$lines',
                   short: true
                 },
                 {
