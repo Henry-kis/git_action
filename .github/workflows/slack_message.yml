@@ -15,10 +15,12 @@ jobs:
       - name: Create Changelog
         id: change-log
         uses: actions/github-script@v6.4.1
+        env:
+          COMMITS: ${{ toJSON(github.event.commits) }}
         with:
           result-encoding: string
           script: |
-            const commits = github.event.commits;
+            const commits = JSON.parse(process.env.COMMITS);
             var lines = "";
             for (const commit of commits) {
               lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
