@@ -22,9 +22,9 @@ jobs:
             custom_payload: |
               {
                 text: "Custom Field Check",
-                icon_emoji: ':octocat:'
                 attachments: [{
                   "author_name": "8398a7@action-slack", // json
+                  icon_emoji: ':octocat:'
                   fallback: 'fallback',
                   color: 'good',
                   title: 'CI Result',
