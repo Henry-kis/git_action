@@ -25,7 +25,6 @@ jobs:
                 text: "Custom Field Check",
                 attachments: [{
                   "author_name": "8398a7@action-slack", // json
-                  icon_emoji: ':octocat:'
                   fallback: 'fallback',
                   title: 'CI Result',
                   color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
