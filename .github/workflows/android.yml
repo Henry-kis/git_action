@@ -64,6 +64,8 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
+          channel-id: 'D04KCUGBDBK'
+          slack-message: 'This message was sent through a proxy'
           # This data can be any valid JSON from a previous step in the GitHub Action
           payload: |
             {
@@ -83,26 +85,5 @@ jobs:
               ]   
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      - name: Slack Notify Build
-        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-        with:
-          channel: github_connection_test
-          status: STARTED
-          color: good
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
-
-
-#  post_slack:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Notify slack success
-#        id: slack # IMPORTANT: reference this step ID value in future Slack steps
-#        env:
 #          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#        uses: voxmedia/github-action-slack-notify-build@v1.1.2
-#        with:
-#          channel: D04KCUGBDBK
-#          status: SUCCESS
-#          color: good
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
