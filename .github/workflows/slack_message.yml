@@ -40,4 +40,3 @@ jobs:
           SLACK_MESSAGE: '${{steps.change-log.outputs.result}}'
           SLACK_FOOTER: '현재시간'
           SLACK_ICON_EMOJI: ':bell:'
-          SLACK_ICON: ':eyes:'
