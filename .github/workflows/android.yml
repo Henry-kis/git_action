@@ -30,7 +30,7 @@ jobs:
                 fields: [{
                   "type": "mrkdwn",
                   title: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?",
-                  value: ${{ toJSON(github.event.head_commit.message) }},
+                  value: "*About this build*:\nCommit header This is a multiple line commit message that might have some nice formatting?\n\n${{ toJSON(github.event.head_commit.message) }}",
                   short: true
                 },
                 {
@@ -60,29 +60,3 @@ jobs:
           SLACK_MESSAGE: 'Post Content :rocket:'
           SLACK_TITLE: Post Title
           SLACK_USERNAME: rtCamp
-      - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          channel-id: 'github_connection_test'
-          slack-message: 'This message was sent through a proxy'
-          # This data can be any valid JSON from a previous step in the GitHub Action
-          payload: |
-            {
-              "attachments": [
-                {
-                  "pretext": "Deployment finished",
-                  "color": "28a745",
-                  "fields": [
-                    {
-                      "title": "Status",
-                      "short": true,
-                      "value": "Completed"
-                    }
-                  ]
-                }
-              ]   
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
