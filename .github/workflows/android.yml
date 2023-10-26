@@ -46,7 +46,6 @@ jobs:
                 title: 'Deploy Result12',
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
                 fields: [{
-                  type : 'mrkdwn',
                   title: '## What’s Changed',
                   value: '*About this build*\n\n${{ steps.change-log.outputs.result }}',
                   short: true
