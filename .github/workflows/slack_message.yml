@@ -37,3 +37,4 @@ jobs:
           SLACK_TITLE: '변경 내용 :fast_parrot:'
           SLACK_MESSAGE: '${{steps.change-log.outputs.result}}'
           SLACK_FOOTER: 'ㅇㅁㄴㅇ'
+          SLACK_ICON_EMOJI: ':bell:'
