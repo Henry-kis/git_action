@@ -16,7 +16,7 @@ jobs:
           echo "${{toJSON(github.event)}}"
       - name: Create Changelog
         id: change-log
-        uses: actions/github-script@v6.3.1
+        uses: actions/github-script@v2.1.0
         env:
           COMMITS: ${{ toJSON(github.event.commits) }}
         with:
