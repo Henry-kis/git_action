@@ -19,6 +19,7 @@ jobs:
 
         with:
             status: custom
+            fields: workflow,job,commit,repo,ref,author,took
             custom_payload: |
               {
                 text: "Custom Field Check",
