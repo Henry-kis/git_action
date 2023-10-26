@@ -24,6 +24,7 @@ jobs:
             console.log(commits);
             var lines = "";
             if (commits != null) {
+              console.log("commits not null");
               const commitsString = JSON.parse(commits);
               for (const commit of commitsString) {
                 if (commit.message.includes('VMTS-')) {
@@ -31,6 +32,7 @@ jobs:
                 }
               }
             } else {
+            console.log("commits null");
               lines = "변경 내용을 불러 올 수 없습니다.";
             }
             return lines
