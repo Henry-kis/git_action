@@ -23,7 +23,10 @@ jobs:
             const commits = process.env.COMMITS;
             console.log(commits);
             var lines = "";
-            if (commits != null) {
+            if (commits == 'null') {
+              console.log("commits null");
+              lines = "변경 내용을 불러 올 수 없습니다.";
+            } else {
               console.log("commits not null");
               const commitsString = JSON.parse(commits);
               for (const commit of commitsString) {
@@ -31,9 +34,6 @@ jobs:
                   lines += "- " + commit.message + " (" + commit.author.username + ")\n"
                 }
               }
-            } else {
-            console.log("commits null");
-              lines = "변경 내용을 불러 올 수 없습니다.";
             }
             return lines
       - name: Slack Notify
