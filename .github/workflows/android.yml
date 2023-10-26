@@ -28,13 +28,12 @@ jobs:
               lines += "- " + commit.message + " (" + commit.id + ") @" + commit.author.username + "\n"
             }
             return lines
-      - name: Get result
-        run: echo "${{steps.change-log.outputs.result}}"
       - name: Notify slack message
         uses: 8398a7/action-slack@v3.15.1
         env:
           GITHUB_TOKEN: ${{ github.token }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: echo "${{steps.change-log.outputs.result}}"
         with:
           status: custom
           fields: all
