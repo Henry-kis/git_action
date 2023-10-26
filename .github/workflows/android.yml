@@ -12,12 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: 8398a7/action-slack@v3
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
         with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          channels: ${{ secrets.SLACK_CHANNELS }}
+
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest,text  # selectable (default: repo,message)
-          text: ${{ github.event.head_commit.message }}
+          text: '${{ github.event.head_commit.message }}'
+          if_mention: failure,cancelled
 
   post_slack:
     runs-on: ubuntu-latest
@@ -28,6 +31,7 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
         uses: voxmedia/github-action-slack-notify-build@v1.1.2
         with:
+          channel: D04KCUGBDBK
           status: SUCCESS
           color: good
           text: ${{ github.event.head_commit.message }}
