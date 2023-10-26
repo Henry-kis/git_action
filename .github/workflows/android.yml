@@ -13,12 +13,12 @@ jobs:
     steps:
       - uses: 8398a7/action-slack@v3
         with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          channels: ${{ secrets.SLACK_CHANNELS }}
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest,text  # selectable (default: repo,message)
           text: ${{ github.event.head_commit.message }}
 
-        env:
-          SLACK_BOT_TOKEN : ${{ secrets.SLACK_DEPLOY_TOKEN }} # required
   post_slack:
     runs-on: ubuntu-latest
     steps:
