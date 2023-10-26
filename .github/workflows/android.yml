@@ -23,7 +23,7 @@ jobs:
             custom_payload: |
               {
                 attachments: [{
-                  "author_name": ${process.env.AS_AUTHOR},
+                  "author_name": `${process.env.AS_AUTHOR}`,
                   fallback: 'fallback',
                   title: 'Deploy Result',
                   color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
