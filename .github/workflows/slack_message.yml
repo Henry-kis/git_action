@@ -31,9 +31,9 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_USERNAME: 'name'
-          SLACK_CHANNEL: general
-          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MSG_AUTHOR: 'ㅇㅁㄴㅇ213'
+          SLACK_COLOR: ${{ job.status }}
           SLACK_TITLE: '변경 내용 :fast_parrot:'
           SLACK_MESSAGE: '${{steps.change-log.outputs.result}}'
           SLACK_FOOTER: 'ㅇㅁㄴㅇ'
+          MSG_MINIMAL: true
