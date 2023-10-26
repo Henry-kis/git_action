@@ -23,11 +23,15 @@ jobs:
             const commits = process.env.COMMITS;
             console.log(commits);
             var lines = "";
-            const commitsString = JSON.parse(commits);
-            for (const commit of commitsString) {
-              if (commit.message.includes('VMTS-')) {
-                lines += "- " + commit.message + " (" + commit.author.username + ")\n"
+            if (commits != null) {
+              const commitsString = JSON.parse(commits);
+              for (const commit of commitsString) {
+                if (commit.message.includes('VMTS-')) {
+                  lines += "- " + commit.message + " (" + commit.author.username + ")\n"
+                }
               }
+            } else {
+              lines = "변경 내용을 불러 올 수 없습니다.";
             }
             return lines
       - name: Slack Notify
