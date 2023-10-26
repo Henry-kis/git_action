@@ -22,8 +22,8 @@ jobs:
           script: |
             const commits = process.env.COMMITS;
             console.log(commits);
-            const commitsString = JSON.parse();
             var lines = "";
+            const commitsString = JSON.parse(commits);
             for (const commit of commitsString) {
               if (commit.message.includes('VMTS-')) {
                 lines += "- " + commit.message + " (" + commit.author.username + ")\n"
